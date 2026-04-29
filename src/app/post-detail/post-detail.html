@@ -1,0 +1,23 @@
+@if (post(); as post) {
+  <article class="post-detail">
+    <header class="post-detail__header">
+      <div class="container">
+        <a routerLink="/projekty" class="back-link">← Wróć do projektów</a>
+        <h1>{{ post.title }}</h1>
+        <time class="post-detail__date">{{ post.publishedAt | date: 'dd MMMM yyyy' }}</time>
+      </div>
+    </header>
+
+    @if (post.imageUrl) {
+      <div class="post-detail__hero">
+        <img [src]="post.imageUrl" [alt]="post.title" />
+      </div>
+    }
+
+    <div class="post-detail__body container" [innerHTML]="bodyHtml()"></div>
+  </article>
+} @else {
+  <div class="post-detail-loading container">
+    <p>Ładowanie…</p>
+  </div>
+}

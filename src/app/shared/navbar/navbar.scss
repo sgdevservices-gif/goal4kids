@@ -1,0 +1,151 @@
+@use '../../../styles/tokens' as *;
+
+:host {
+  display: block;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: $navbar-height;
+  background: $color-bg;
+  border-bottom: 1px solid $color-border;
+  box-shadow: $shadow-sm;
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  img {
+    height: 54px;
+    width: auto;
+    object-fit: contain;
+  }
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  a {
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: $color-text;
+    text-decoration: none;
+    transition: color $transition-base;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $color-accent-primary;
+      transform: scaleX(0);
+      transition: transform $transition-base;
+      border-radius: 2px;
+    }
+
+    &:hover {
+      color: $color-accent-primary;
+    }
+
+    &.active {
+      color: $color-accent-primary;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 6px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: $color-text;
+    border-radius: 2px;
+    transition: transform $transition-slow, opacity $transition-slow;
+    transform-origin: center;
+  }
+}
+
+@media (max-width: #{$bp-md - 1px}) {
+  .navbar__burger {
+    display: flex;
+  }
+
+  .navbar__links {
+    position: fixed;
+    inset: $navbar-height 0 0 0;
+    background: $color-white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    transform: translateX(100%);
+    transition: transform $transition-slow;
+
+    a {
+      font-size: 1.25rem;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &.is-open {
+      transform: translateX(0);
+    }
+  }
+}
+
+:host.menu-open .navbar__burger {
+  span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar__links {
+    transition: none;
+  }
+  .navbar__burger span {
+    transition: none;
+  }
+}

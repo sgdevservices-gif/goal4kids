@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+li a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  &:hover {
+    background: #f9fafb;
+  }
+}
+
+img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.125rem;
+}
+
+time {
+  font-size: 0.875rem;
+  color: #6b7280;
+}

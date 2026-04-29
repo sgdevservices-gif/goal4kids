@@ -1,0 +1,35 @@
+@use '../../styles/tokens' as *;
+
+:host {
+  display: block;
+}
+
+.projekty-hero {
+  background: $color-surface-alt;
+  padding: $space-3xl 0 $space-2xl;
+
+  h1 {
+    margin-bottom: $space-md;
+  }
+}
+
+.projekty-hero__subtitle {
+  font-size: 1.125rem;
+  color: $color-text-muted;
+  max-width: 560px;
+}
+
+.projekty-grid-section {
+  padding: $space-3xl 0;
+}
+
+.projekty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $space-xl;
+}
+
+.projekty-empty {
+  color: $color-text-muted;
+  font-size: 1rem;
+}

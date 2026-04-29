@@ -1,0 +1,70 @@
+@use '../../styles/tokens' as *;
+
+:host {
+  display: block;
+}
+
+.kontakt-hero {
+  background: $color-surface-alt;
+  padding: $space-3xl 0 $space-2xl;
+
+  h1 {
+    margin-bottom: $space-md;
+  }
+}
+
+.kontakt-hero__subtitle {
+  font-size: 1.125rem;
+  color: $color-text-muted;
+  max-width: 560px;
+}
+
+.kontakt-info {
+  max-width: 480px;
+
+  h2 {
+    margin-bottom: $space-xl;
+  }
+}
+
+.kontakt-details {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+}
+
+.kontakt-detail {
+  display: flex;
+  gap: $space-md;
+  align-items: flex-start;
+
+  strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: $space-xs;
+    color: $color-text;
+  }
+
+  p {
+    color: $color-text-muted;
+    line-height: 1.6;
+  }
+
+  a {
+    color: $color-accent-primary;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.kontakt-detail__icon {
+  font-size: 1.25rem;
+  width: 44px;
+  height: 44px;
+  background: $color-surface-alt;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

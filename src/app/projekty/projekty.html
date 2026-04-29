@@ -1,0 +1,21 @@
+<section class="projekty-hero">
+  <div class="container">
+    <span class="section-label">Nasze działania</span>
+    <h1>Projekty</h1>
+    <p class="projekty-hero__subtitle">Poznaj inicjatywy, w które angażuje się fundacja Goal4Kids.</p>
+  </div>
+</section>
+
+<section class="projekty-grid-section">
+  <div class="container">
+    @if (posts().length === 0) {
+      <p class="projekty-empty">Ładowanie projektów…</p>
+    } @else {
+      <div class="projekty-grid">
+        @for (post of posts(); track post._id) {
+          <app-post-card [post]="post" />
+        }
+      </div>
+    }
+  </div>
+</section>

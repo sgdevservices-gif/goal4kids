@@ -1,0 +1,23 @@
+<header class="navbar">
+  <div class="navbar__inner container">
+    <a routerLink="/" class="navbar__logo">
+      <img src="logo.png" alt="Goal4Kids" />
+    </a>
+    <nav class="navbar__links" [class.is-open]="menuOpen()">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="menuOpen.set(false)">Strona główna</a>
+      <a routerLink="/o-nas" routerLinkActive="active" (click)="menuOpen.set(false)">O nas</a>
+      <a routerLink="/projekty" routerLinkActive="active" (click)="menuOpen.set(false)">Projekty</a>
+      <a routerLink="/kontakt" routerLinkActive="active" (click)="menuOpen.set(false)">Kontakt</a>
+    </nav>
+    <button
+      class="navbar__burger"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? 'Zamknij menu' : 'Otwórz menu'"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

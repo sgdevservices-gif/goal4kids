@@ -1,0 +1,15 @@
+<article class="post-card">
+  <a [routerLink]="['/posts', post.slug.current]" class="post-card__link">
+    <div class="post-card__image-wrapper">
+      @if (post.imageUrl) {
+        <img [src]="post.imageUrl" [alt]="post.title" class="post-card__image" />
+      } @else {
+        <div class="post-card__image-placeholder"></div>
+      }
+    </div>
+    <div class="post-card__body">
+      <time class="post-card__date">{{ post.publishedAt | date: 'dd.MM.yyyy' }}</time>
+      <h3 class="post-card__title">{{ post.title }}</h3>
+    </div>
+  </a>
+</article>

@@ -1,0 +1,13 @@
+<ul>
+  @for (post of posts(); track post._id) {
+    <li>
+      <a [routerLink]="['/posts', post.slug.current]">
+        @if (post.imageUrl) {
+          <img [src]="post.imageUrl" [alt]="post.title" />
+        }
+        <h2>{{ post.title }}</h2>
+        <time>{{ post.publishedAt | date: 'dd.MM.yyyy' }}</time>
+      </a>
+    </li>
+  }
+</ul>

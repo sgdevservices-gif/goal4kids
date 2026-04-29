@@ -1,0 +1,67 @@
+<section class="hero">
+  <div class="hero__bottom">
+    <p class="hero__subtitle">Sport. Edukacja. Wsparcie.</p>
+    <div class="hero__actions">
+      <a routerLink="/o-nas" class="btn btn--white">Dowiedz się więcej</a>
+      <a routerLink="/kontakt" class="btn btn--outline-white">Skontaktuj się</a>
+    </div>
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span></span>
+    </div>
+  </div>
+</section>
+
+<section class="section home-about">
+  <div class="container home-about__inner">
+    <div class="home-about__text">
+      <span class="section-label">O fundacji</span>
+      <h2>Wspieramy wszechstronny rozwój dzieci i młodzieży</h2>
+      <p>Fundacja Goal4Kids działa na rzecz wszechstronnego rozwoju dzieci i młodzieży poprzez sport, edukację oraz wsparcie społeczne. Naszą misją jest tworzenie bezpiecznej i inspirującej przestrzeni, w której młodzi ludzie mogą rozwijać swoje pasje, talenty i kompetencje społeczne.</p>
+      <a routerLink="/o-nas" class="btn btn--outline">Dowiedz się więcej</a>
+    </div>
+    <div class="home-about__stats">
+      <div class="stat">
+        <span class="stat__number">⚽</span>
+        <span class="stat__label">Szkolenia sportowe</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">📚</span>
+        <span class="stat__label">Warsztaty edukacyjne</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">🤝</span>
+        <span class="stat__label">Wsparcie społeczne</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt home-projekty">
+  <div class="container">
+    <div class="home-projekty__header">
+      <div>
+        <span class="section-label">Nasze działania</span>
+        <h2>Najnowsze projekty</h2>
+      </div>
+      <a routerLink="/projekty" class="btn btn--outline">Zobacz wszystkie</a>
+    </div>
+    @if (latestPosts().length > 0) {
+      <div class="home-projekty__grid">
+        @for (post of latestPosts(); track post._id; let i = $index) {
+          <app-post-card [post]="post" [class.hide-mobile]="i === 2" />
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<section class="section section--dark home-cta">
+  <div class="container home-cta__inner">
+    <div>
+      <span class="section-label">Dołącz do nas</span>
+      <h2>Razem możemy zmieniać życie dzieci</h2>
+      <p>Wesprzyj naszą misję — każda pomoc ma znaczenie.</p>
+    </div>
+    <a routerLink="/kontakt" class="btn btn--white">Skontaktuj się z nami</a>
+  </div>
+</section>
