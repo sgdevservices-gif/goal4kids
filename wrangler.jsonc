@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "goal4kids",
-  "pages_build_output_dir": "dist/foundation/browser"
+  "pages_build_output_dir": "dist/foundation/browser",
   "compatibility_date": "2026-04-29",
   "observability": {
     "enabled": true
