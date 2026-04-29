@@ -8,5 +8,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.scss'
 })
 export class App {
+  public date = new Date();
   protected readonly title = signal('foundation');
 }
