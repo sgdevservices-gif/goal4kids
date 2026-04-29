@@ -1,59 +1,75 @@
 # Foundation
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+Angular + Sanity template. Reusable across projects — all credentials live in one place.
 
-## Development server
+## Setup
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Copy `.env.example` to `.env` and fill in your values:
 
 ```bash
-ng generate component component-name
+cp .env.example .env
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+```env
+SANITY_PROJECT_ID=your_project_id
+SANITY_DATASET=production
+SANITY_STUDIO_APP_ID=your_studio_app_id
+SANITY_STUDIO_TITLE=your_studio_title
+SANITY_API_VERSION=2026-04-29
+```
+
+2. Install dependencies:
 
 ```bash
-ng generate --help
+npm install
+cd studio && npm install && cd ..
 ```
 
-## Building
+## Development
 
-To build the project run:
+Start the Angular dev server (generates `src/environments/environment.ts` from `.env` automatically):
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Start Sanity Studio:
 
 ```bash
-ng test
+cd studio && npm run dev
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Build
 
 ```bash
-ng e2e
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## How configuration works
 
-## Additional Resources
+All project-specific values are stored in `.env` at the root. This file is never committed.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Variable | Used by |
+|---|---|
+| `SANITY_PROJECT_ID` | Angular app, Sanity Studio, Sanity CLI |
+| `SANITY_DATASET` | Angular app, Sanity Studio, Sanity CLI |
+| `SANITY_STUDIO_APP_ID` | Sanity CLI (deploy) |
+| `SANITY_STUDIO_TITLE` | Sanity Studio UI |
+| `SANITY_API_VERSION` | Angular app |
+
+**Angular** reads env vars via `scripts/set-env.ts`, which generates `src/environments/environment.ts` before each build/serve (`prestart`, `prebuild` hooks in `package.json`). The generated file is gitignored.
+
+**Sanity Studio** (`studio/`) reads env vars via `dotenv-cli`, which loads `../.env` before every `sanity` command.
+
+## Reusing for a new project
+
+1. Clone / fork this repo
+2. Create a new `.env` with your new project's credentials
+3. If reusing the same Sanity project, change `SANITY_DATASET` to a new dataset name
+4. Update `SANITY_STUDIO_APP_ID` after running `cd studio && npm run deploy` for the first time (Sanity will assign a new ID)
+
+## Deploy Sanity Studio
+
+```bash
+cd studio && npm run deploy
+```

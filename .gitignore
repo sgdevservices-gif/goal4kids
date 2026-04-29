@@ -11,9 +11,18 @@
 npm-debug.log
 yarn-error.log
 
+# Environment — local credentials, never commit
+.env
+# Generated from .env before build
+src/environments/environment.ts
+# Generated from Sanity at build time
+src/data
+
 # IDEs and editors
 .idea/
 .project
+.angular
+.vscode
 .classpath
 .c9/
 *.launch
@@ -42,10 +51,3 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
-
-# wrangler files
-.wrangler
-.dev.vars*
-!.dev.vars.example
-.env*
-!.env.example

@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "set-env": "tsx scripts/set-env.ts",
+    "fetch-posts": "tsx scripts/fetch-posts.ts",
+    "prestart": "npm run set-env && npm run fetch-posts",
     "start": "ng serve",
+    "prebuild": "npm run set-env && npm run fetch-posts",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "watch": "npm run set-env && npm run fetch-posts && ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:foundation": "node dist/foundation/server/server.mjs",
-    "deploy": "npm run build && wrangler deploy",
-    "preview": "npm run build && wrangler dev"
+    "serve:ssr:foundation": "node dist/foundation/server/server.mjs"
   },
   "private": true,
   "packageManager": "npm@11.6.2",
@@ -22,6 +24,7 @@
     "@angular/platform-server": "^21.2.0",
     "@angular/router": "^21.2.0",
     "@angular/ssr": "^21.2.8",
+    "@sanity/client": "^7.22.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
@@ -33,9 +36,10 @@
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
     "jsdom": "^28.0.0",
+    "dotenv": "^16.0.0",
     "prettier": "^3.8.1",
+    "tsx": "^4.0.0",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.8",
-    "wrangler": "^4.86.0"
+    "vitest": "^4.0.8"
   }
 }
