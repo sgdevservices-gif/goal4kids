@@ -2,6 +2,7 @@ import { Component, signal, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Post } from '../post.model';
+import { SeoService } from '../shared/seo/seo.service';
 import posts from '../../data/posts.json';
 
 type PTSpan = { _type: 'span'; text: string; marks: string[] };
@@ -62,6 +63,14 @@ export class PostDetail {
     this.post.set(found);
     if (found?.body?.length) {
       this.bodyHtml.set(portableTextToHtml(found.body as unknown[]));
+    }
+    if (found) {
+      inject(SeoService).update({
+        title: found.title,
+        description: `Przeczytaj artykuł "${found.title}" na stronie Fundacji Goal4Kids.`,
+        image: found.imageUrl,
+        path: `/posts/${found.slug.current}`,
+      });
     }
   }
 }
